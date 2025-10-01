@@ -86,68 +86,10 @@
             margin-bottom: 20px;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 10px;
-            flex-wrap: wrap;
-            animation: fadeIn 1s ease-out 0.3s both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .tab {
-            padding: 15px 30px;
-            background: var(--card-bg);
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .tab:hover::before {
-            left: 100%;
-        }
-
-        .tab:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .tab.active {
-            background: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        .tab.python.active { background: var(--python-color); }
-        .tab.webhack.active { background: var(--webhack-color); }
-        .tab.linux.active { background: var(--linux-color); }
-        .tab.custom.active { background: var(--custom-color); }
-
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
             animation: slideUp 0.8s ease-out 0.5s both;
         }
@@ -165,12 +107,12 @@
 
         .track-card {
             background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
+            border-radius: 20px;
+            padding: 30px;
             transition: all 0.3s ease;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
         .track-card::before {
@@ -179,7 +121,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 5px;
             background: var(--secondary-color);
             transform: scaleX(0);
             transition: transform 0.3s ease;
@@ -191,44 +133,126 @@
 
         .track-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .track-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .track-title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .track-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
         }
 
         .track-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: bold;
+        }
+
+        .track-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .edit-btn {
+            background: var(--warning-color);
+        }
+
+        .delete-btn {
+            background: var(--danger-color);
+        }
+
+        .view-btn {
+            background: var(--success-color);
         }
 
         .track-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 15px;
+            margin: 20px 0;
         }
 
         .stat-item {
             text-align: center;
-            padding: 10px;
+            padding: 15px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
         }
 
         .stat-value {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: var(--secondary-color);
+            margin-bottom: 5px;
         }
 
         .stat-label {
             font-size: 0.9rem;
             color: var(--text-secondary);
+        }
+
+        .progress-container {
+            margin-top: 20px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
         }
 
         .modal {
@@ -246,10 +270,12 @@
         .modal-content {
             position: relative;
             background: var(--light-bg);
-            margin: 5% auto;
+            margin: 2% auto;
             padding: 30px;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
             border-radius: 20px;
             animation: slideUp 0.3s ease;
         }
@@ -279,7 +305,8 @@
             color: var(--text-primary);
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 12px;
             background: var(--card-bg);
@@ -290,10 +317,42 @@
             transition: all 0.3s ease;
         }
 
-        .form-group input:focus {
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--secondary-color);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .icon-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .icon-option {
+            width: 60px;
+            height: 60px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-option:hover {
+            border-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .icon-option.selected {
+            border-color: var(--success-color);
+            background: rgba(16, 185, 129, 0.2);
         }
 
         .btn-primary {
@@ -315,12 +374,52 @@
             box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
         }
 
-        .timeline-container {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            animation: fadeIn 0.8s ease-out 0.7s both;
+        .create-track-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .create-track-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.6);
+        }
+
+        .floating-action-btn {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            padding: 12px 24px;
+            background: var(--warning-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .floating-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.6);
+        }
+
+        .timeline-modal {
+            max-width: 1200px;
         }
 
         .timeline-header {
@@ -333,6 +432,8 @@
         .timeline {
             position: relative;
             padding: 20px 0;
+            max-height: 60vh;
+            overflow-y: auto;
         }
 
         .timeline::before {
@@ -365,7 +466,7 @@
         }
 
         .timeline-content {
-            background: var(--light-bg);
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 12px;
             width: 45%;
@@ -387,8 +488,6 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: var(--secondary-color);
-            color: white;
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -440,7 +539,6 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
-            animation: fadeIn 1s ease-out 0.9s both;
         }
 
         .filter-btn {
@@ -462,53 +560,13 @@
             background: var(--secondary-color);
         }
 
-        .create-track-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--success-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-
-        .create-track-btn:hover {
-            transform: scale(1.1) rotate(90deg);
-            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.6);
-        }
-
-        .floating-action-btn {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            padding: 12px 24px;
-            background: var(--warning-color);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-
-        .floating-action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.6);
-        }
-
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
             }
 
             .timeline::before {
@@ -523,34 +581,6 @@
             .timeline-date {
                 left: 20px;
             }
-
-            .tabs {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .tab {
-                width: 100%;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .loading-spinner {
-            display: none;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--secondary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 50px auto;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
 
         .achievement-popup {
@@ -577,12 +607,16 @@
             50% { transform: translateX(0) scale(1.05); }
         }
 
-        .progress-ring {
-            transform: rotate(-90deg);
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
         }
 
-        .progress-ring-circle {
-            transition: stroke-dashoffset 0.5s ease;
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -590,50 +624,20 @@
     <div class="container">
         <header>
             <h1>CyberSecurity Learning Challenge</h1>
+            <p class="subtitle">Master Offensive Security Skills</p>
             <p class="start-date" id="globalStartDate">
                 <i class="fas fa-calendar-alt"></i> Start Date: <span id="startDateDisplay">September 25, 2025</span>
             </p>
         </header>
 
-        <div class="tabs" id="tabsContainer">
-            <button class="tab dashboard active" onclick="showDashboard()">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
-            </button>
-            <button class="tab python" onclick="switchTrack('python')">
-                <i class="fab fa-python"></i> Python (164 Days)
-            </button>
-            <button class="tab webhack" onclick="switchTrack('webhack')">
-                <i class="fas fa-globe"></i> Web Hacking (150 Days)
-            </button>
-            <button class="tab linux" onclick="switchTrack('linux')">
-                <i class="fab fa-linux"></i> Linux & Bash (49 Days)
-            </button>
-        </div>
-
         <div id="dashboardView" class="dashboard-grid">
             <!-- Dashboard cards will be dynamically generated -->
         </div>
 
-        <div id="trackView" style="display: none;">
-            <div class="filter-container">
-                <button class="filter-btn active" onclick="filterLessons('all')">All Lessons</button>
-                <button class="filter-btn" onclick="filterLessons('completed')">Completed</button>
-                <button class="filter-btn" onclick="filterLessons('pending')">Pending</button>
-            </div>
-
-            <div class="loading-spinner" id="loadingSpinner"></div>
-
-            <div class="timeline-container">
-                <div class="timeline-header">
-                    <h2 id="trackTitle">Python Learning Track</h2>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressBar" style="width: 0%"></div>
-                    </div>
-                </div>
-                <div class="timeline" id="timeline">
-                    <!-- Timeline items will be dynamically generated -->
-                </div>
-            </div>
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-graduation-cap"></i>
+            <h2>No Learning Tracks Yet</h2>
+            <p>Click the + button to create your first learning track</p>
         </div>
     </div>
 
@@ -642,14 +646,15 @@
     </button>
 
     <button class="floating-action-btn" onclick="changeStartDate()">
-        <i class="fas fa-calendar-edit"></i> Change Start Date
+        <i class="fas fa-calendar-edit"></i> Change Date
     </button>
 
-    <div class="modal" id="createTrackModal">
+    <!-- Create/Edit Track Modal -->
+    <div class="modal" id="trackModal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeCreateTrackModal()">&times;</span>
-            <h2>Create New Learning Track</h2>
-            <form id="createTrackForm" onsubmit="createNewTrack(event)">
+            <span class="close-modal" onclick="closeTrackModal()">&times;</span>
+            <h2 id="modalTitle">Create New Learning Track</h2>
+            <form id="trackForm" onsubmit="saveTrack(event)">
                 <div class="form-group">
                     <label for="trackName">Track Name</label>
                     <input type="text" id="trackName" required placeholder="e.g., Network Security">
@@ -666,11 +671,62 @@
                     <label for="trackColor">Track Color</label>
                     <input type="color" id="trackColor" value="#8b5cf6">
                 </div>
-                <button type="submit" class="btn-primary">Create Track</button>
+                <div class="form-group">
+                    <label>Track Icon</label>
+                    <div class="icon-selector" id="iconSelector">
+                        <div class="icon-option" data-icon="fa-shield-alt" onclick="selectIcon(this)">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-user-secret" onclick="selectIcon(this)">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-bug" onclick="selectIcon(this)">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-lock" onclick="selectIcon(this)">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-key" onclick="selectIcon(this)">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-network-wired" onclick="selectIcon(this)">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-server" onclick="selectIcon(this)">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-terminal" onclick="selectIcon(this)">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary" id="submitBtn">Create Track</button>
             </form>
         </div>
     </div>
 
+    <!-- Timeline Modal -->
+    <div class="modal timeline-modal" id="timelineModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTimelineModal()">&times;</span>
+            <div class="timeline-header">
+                <h2 id="timelineTitle">Track Timeline</h2>
+                <div class="progress-bar" style="width: 200px;">
+                    <div class="progress-fill" id="timelineProgress" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterTimelineLessons('all')">All</button>
+                <button class="filter-btn" onclick="filterTimelineLessons('completed')">Completed</button>
+                <button class="filter-btn" onclick="filterTimelineLessons('pending')">Pending</button>
+            </div>
+            <div class="timeline" id="modalTimeline">
+                <!-- Timeline items will be dynamically generated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Date Modal -->
     <div class="modal" id="dateModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeDateModal()">&times;</span>
@@ -690,7 +746,7 @@
     </div>
 
     <script>
-        // Track configurations
+        // Default tracks configuration
         const defaultTracks = {
             python: {
                 name: 'Python Learning Track',
@@ -698,7 +754,8 @@
                 lessonsPerDay: 3,
                 color: '#3776ab',
                 icon: 'fab fa-python',
-                isDefault: true
+                iconClass: 'fa-python',
+                iconPrefix: 'fab'
             },
             webhack: {
                 name: 'Web Hacking Learning Track',
@@ -706,66 +763,75 @@
                 lessonsPerDay: 2,
                 color: '#dc2626',
                 icon: 'fas fa-globe',
-                isDefault: true
+                iconClass: 'fa-globe',
+                iconPrefix: 'fas'
             },
             linux: {
                 name: 'Linux & Bash Learning Track',
                 days: 49,
-                lessonsPerDay: 3, // Changed from 4 to 3
+                lessonsPerDay: 3,
                 color: '#f97316',
                 icon: 'fab fa-linux',
-                isDefault: true
+                iconClass: 'fa-linux',
+                iconPrefix: 'fab'
             }
         };
 
-        let tracks = { ...defaultTracks };
-        let customTracks = JSON.parse(localStorage.getItem('customTracks')) || {};
+        let tracks = {};
         let globalStartDate = localStorage.getItem('globalStartDate') || '2025-09-25';
-        let currentTrack = null;
-        let lessonCounter = 1;
+        let currentEditingTrack = null;
+        let currentViewingTrack = null;
         let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || {};
 
         // Initialize the app
         function init() {
-            // Load custom tracks
-            Object.assign(tracks, customTracks);
+            // Load tracks from localStorage or use defaults
+            const savedTracks = localStorage.getItem('tracks');
+            if (savedTracks) {
+                tracks = JSON.parse(savedTracks);
+            } else {
+                tracks = { ...defaultTracks };
+                saveTracksToStorage();
+            }
             
             // Update start date display
             document.getElementById('startDateDisplay').textContent = formatDate(new Date(globalStartDate));
             
-            // Show dashboard by default
-            showDashboard();
-        }
-
-        // Show dashboard
-        function showDashboard() {
-            document.getElementById('dashboardView').style.display = 'grid';
-            document.getElementById('trackView').style.display = 'none';
-            
-            // Update active tab
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelector('.tab.dashboard').classList.add('active');
-            
-            // Generate dashboard cards
+            // Generate dashboard
             generateDashboard();
         }
 
-        // Generate dashboard cards
+        // Save tracks to localStorage
+        function saveTracksToStorage() {
+            localStorage.setItem('tracks', JSON.stringify(tracks));
+        }
+
+        // Generate dashboard
         function generateDashboard() {
             const dashboard = document.getElementById('dashboardView');
+            const emptyState = document.getElementById('emptyState');
+            
             dashboard.innerHTML = '';
             
-            Object.entries(tracks).forEach(([key, track]) => {
-                const card = createTrackCard(key, track);
+            if (Object.keys(tracks).length === 0) {
+                dashboard.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            dashboard.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            Object.entries(tracks).forEach(([trackId, track]) => {
+                const card = createTrackCard(trackId, track);
                 dashboard.appendChild(card);
             });
         }
 
-        // Create track card for dashboard
+        // Create track card
         function createTrackCard(trackId, track) {
             const card = document.createElement('div');
             card.className = 'track-card';
-            card.onclick = () => switchTrack(trackId);
             
             const totalLessons = track.days * track.lessonsPerDay;
             const completedCount = Object.keys(completedLessons).filter(id => 
@@ -775,10 +841,23 @@
             
             card.innerHTML = `
                 <div class="track-header">
-                    <div class="track-title" style="color: ${track.color}">
-                        <i class="${track.icon}"></i> ${track.name}
+                    <div class="track-title-container">
+                        <div class="track-icon" style="background: ${track.color}">
+                            <i class="${track.icon}"></i>
+                        </div>
+                        <div class="track-title">${track.name}</div>
                     </div>
-                    ${!track.isDefault ? `<button onclick="deleteTrack(event, '${trackId}')" style="background: var(--danger-color); border: none; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer;"><i class="fas fa-trash"></i></button>` : ''}
+                    <div class="track-actions">
+                        <button class="action-btn edit-btn" onclick="editTrack('${trackId}')" title="Edit Track">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteTrack('${trackId}')" title="Delete Track">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button class="action-btn view-btn" onclick="viewTrack('${trackId}')" title="View Lessons">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="track-stats">
                     <div class="stat-item">
@@ -798,7 +877,11 @@
                         <div class="stat-label">Progress</div>
                     </div>
                 </div>
-                <div style="margin-top: 15px;">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Progress</span>
+                        <span>${completedCount}/${totalLessons} lessons</span>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: ${progressPercentage}%; background: ${track.color}"></div>
                     </div>
@@ -808,55 +891,146 @@
             return card;
         }
 
-        // Switch between tracks
-        function switchTrack(track) {
-            currentTrack = track;
-            lessonCounter = 1;
+        // Open create track modal
+        function openCreateTrackModal() {
+            currentEditingTrack = null;
+            document.getElementById('modalTitle').textContent = 'Create New Learning Track';
+            document.getElementById('submitBtn').textContent = 'Create Track';
+            document.getElementById('trackForm').reset();
+            document.getElementById('trackColor').value = '#8b5cf6';
             
-            // Update active tab
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelector(`.tab.${track}`) || document.querySelector('.tab.dashboard');
-            if (document.querySelector(`.tab.${track}`)) {
-                document.querySelector(`.tab.${track}`).classList.add('active');
-            }
+            // Reset icon selection
+            document.querySelectorAll('.icon-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector('.icon-option[data-icon="fa-shield-alt"]').classList.add('selected');
             
-            // Show track view
-            document.getElementById('dashboardView').style.display = 'none';
-            document.getElementById('trackView').style.display = 'block';
-            
-            // Show loading spinner
-            document.getElementById('loadingSpinner').style.display = 'block';
-            document.getElementById('timeline').innerHTML = '';
-            
-            // Simulate loading delay for better UX
-            setTimeout(() => {
-                document.getElementById('loadingSpinner').style.display = 'none';
-                loadTrack(track);
-            }, 300);
+            document.getElementById('trackModal').style.display = 'block';
         }
 
-        // Load track data
-        function loadTrack(track) {
-            const trackData = tracks[track];
-            const timeline = document.getElementById('timeline');
-            const trackTitle = document.getElementById('trackTitle');
+        // Edit track
+        function editTrack(trackId) {
+            currentEditingTrack = trackId;
+            const track = tracks[trackId];
             
-            trackTitle.innerHTML = `<i class="${trackData.icon}"></i> ${trackData.name}`;
+            document.getElementById('modalTitle').textContent = 'Edit Learning Track';
+            document.getElementById('submitBtn').textContent = 'Save Changes';
             
-            // Generate timeline items
-            for (let day = 1; day <= trackData.days; day++) {
+            // Fill form with track data
+            document.getElementById('trackName').value = track.name;
+            document.getElementById('trackDays').value = track.days;
+            document.getElementById('trackLessons').value = track.lessonsPerDay;
+            document.getElementById('trackColor').value = track.color;
+            
+            // Select icon
+            document.querySelectorAll('.icon-option').forEach(option => {
+                option.classList.remove('selected');
+                if (option.dataset.icon === track.iconClass) {
+                    option.classList.add('selected');
+                }
+            });
+            
+            document.getElementById('trackModal').style.display = 'block';
+        }
+
+        // Close track modal
+        function closeTrackModal() {
+            document.getElementById('trackModal').style.display = 'none';
+            currentEditingTrack = null;
+        }
+
+        // Select icon
+        function selectIcon(element) {
+            document.querySelectorAll('.icon-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        // Save track
+        function saveTrack(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('trackName').value;
+            const days = parseInt(document.getElementById('trackDays').value);
+            const lessons = parseInt(document.getElementById('trackLessons').value);
+            const color = document.getElementById('trackColor').value;
+            
+            const selectedIcon = document.querySelector('.icon-option.selected');
+            const iconClass = selectedIcon.dataset.icon;
+            const iconPrefix = iconClass.startsWith('fa-') ? 'fas' : 'fab';
+            
+            const trackData = {
+                name: name,
+                days: days,
+                lessonsPerDay: lessons,
+                color: color,
+                icon: `${iconPrefix} ${iconClass}`,
+                iconClass: iconClass,
+                iconPrefix: iconPrefix
+            };
+            
+            if (currentEditingTrack) {
+                tracks[currentEditingTrack] = trackData;
+                showAchievement('Track Updated!');
+            } else {
+                const trackId = 'track_' + Date.now();
+                tracks[trackId] = trackData;
+                showAchievement('New Track Created!');
+            }
+            
+            saveTracksToStorage();
+            closeTrackModal();
+            generateDashboard();
+        }
+
+        // Delete track
+        function deleteTrack(trackId) {
+            if (confirm('Are you sure you want to delete this track? This action cannot be undone.')) {
+                delete tracks[trackId];
+                
+                // Remove completed lessons for this track
+                Object.keys(completedLessons).forEach(lessonId => {
+                    if (lessonId.startsWith(trackId)) {
+                        delete completedLessons[lessonId];
+                    }
+                });
+                localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                
+                saveTracksToStorage();
+                generateDashboard();
+                showAchievement('Track Deleted!');
+            }
+        }
+
+        // View track timeline
+        function viewTrack(trackId) {
+            currentViewingTrack = trackId;
+            const track = tracks[trackId];
+            
+            document.getElementById('timelineTitle').innerHTML = `<i class="${track.icon}"></i> ${track.name}`;
+            
+            // Generate timeline
+            const timeline = document.getElementById('modalTimeline');
+            timeline.innerHTML = '';
+            
+            let lessonCounter = 1;
+            for (let day = 1; day <= track.days; day++) {
                 const date = new Date(globalStartDate);
                 date.setDate(date.getDate() + day - 1);
                 
-                const timelineItem = createTimelineItem(day, date, trackData);
+                const timelineItem = createTimelineItem(trackId, day, date, track, lessonCounter);
                 timeline.appendChild(timelineItem);
+                
+                lessonCounter += track.lessonsPerDay;
             }
             
-            updateProgressBar();
+            updateTimelineProgress(trackId);
+            document.getElementById('timelineModal').style.display = 'block';
         }
 
         // Create timeline item
-        function createTimelineItem(day, date, trackData) {
+        function createTimelineItem(trackId, day, date, track, startLesson) {
             const item = document.createElement('div');
             item.className = 'timeline-item';
             item.style.animationDelay = `${day * 10}ms`;
@@ -866,6 +1040,7 @@
             
             const dateElement = document.createElement('div');
             dateElement.className = 'timeline-date';
+            dateElement.style.background = track.color;
             dateElement.textContent = formatDate(date);
             
             const dayTitle = document.createElement('h3');
@@ -875,8 +1050,8 @@
             lessonsGrid.className = 'lessons-grid';
             
             // Create lessons for the day
-            for (let lesson = 1; lesson <= trackData.lessonsPerDay; lesson++) {
-                const lessonItem = createLessonItem(day, lesson);
+            for (let lesson = 1; lesson <= track.lessonsPerDay; lesson++) {
+                const lessonItem = createLessonItem(trackId, day, lesson, startLesson + lesson - 1);
                 lessonsGrid.appendChild(lessonItem);
             }
             
@@ -889,11 +1064,11 @@
         }
 
         // Create lesson item
-        function createLessonItem(day, lesson) {
+        function createLessonItem(trackId, day, lesson, lessonNumber) {
             const lessonItem = document.createElement('div');
             lessonItem.className = 'lesson-item';
             
-            const lessonId = `${currentTrack}-day${day}-lesson${lesson}`;
+            const lessonId = `${trackId}-day${day}-lesson${lesson}`;
             const isCompleted = completedLessons[lessonId];
             
             if (isCompleted) {
@@ -905,14 +1080,12 @@
             checkbox.className = 'lesson-checkbox';
             checkbox.id = lessonId;
             checkbox.checked = isCompleted;
-            checkbox.onchange = () => toggleLesson(lessonId);
+            checkbox.onchange = () => toggleLesson(lessonId, trackId);
             
             const label = document.createElement('label');
             label.className = 'lesson-label';
             label.htmlFor = lessonId;
-            label.textContent = `Lesson ${lessonCounter}`;
-            
-            lessonCounter++;
+            label.textContent = `Lesson ${lessonNumber}`;
             
             lessonItem.appendChild(checkbox);
             lessonItem.appendChild(label);
@@ -921,38 +1094,36 @@
         }
 
         // Toggle lesson completion
-        function toggleLesson(lessonId) {
+        function toggleLesson(lessonId, trackId) {
             completedLessons[lessonId] = !completedLessons[lessonId];
             localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
             
             const lessonItem = document.querySelector(`#${lessonId}`).parentElement;
             if (completedLessons[lessonId]) {
                 lessonItem.classList.add('completed');
-                checkAchievements();
+                checkAchievements(trackId);
             } else {
                 lessonItem.classList.remove('completed');
             }
             
-            updateProgressBar();
+            updateTimelineProgress(trackId);
             generateDashboard(); // Update dashboard stats
         }
 
-        // Update progress bar
-        function updateProgressBar() {
-            if (!currentTrack) return;
-            
-            const trackData = tracks[currentTrack];
-            const totalLessons = trackData.days * trackData.lessonsPerDay;
+        // Update timeline progress
+        function updateTimelineProgress(trackId) {
+            const track = tracks[trackId];
+            const totalLessons = track.days * track.lessonsPerDay;
             const completedCount = Object.keys(completedLessons).filter(id => 
-                id.startsWith(currentTrack) && completedLessons[id]
+                id.startsWith(trackId) && completedLessons[id]
             ).length;
             const progressPercentage = (completedCount / totalLessons) * 100;
             
-            document.getElementById('progressBar').style.width = `${progressPercentage}%`;
+            document.getElementById('timelineProgress').style.width = `${progressPercentage}%`;
         }
 
-        // Filter lessons
-        function filterLessons(filter) {
+        // Filter timeline lessons
+        function filterTimelineLessons(filter) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
@@ -978,71 +1149,10 @@
             });
         }
 
-        // Open create track modal
-        function openCreateTrackModal() {
-            document.getElementById('createTrackModal').style.display = 'block';
-        }
-
-        // Close create track modal
-        function closeCreateTrackModal() {
-            document.getElementById('createTrackModal').style.display = 'none';
-            document.getElementById('createTrackForm').reset();
-        }
-
-        // Create new track
-        function createNewTrack(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('trackName').value;
-            const days = parseInt(document.getElementById('trackDays').value);
-            const lessons = parseInt(document.getElementById('trackLessons').value);
-            const color = document.getElementById('trackColor').value;
-            
-            const trackId = 'custom_' + Date.now();
-            
-            const newTrack = {
-                name: name,
-                days: days,
-                lessonsPerDay: lessons,
-                color: color,
-                icon: 'fas fa-graduation-cap',
-                isDefault: false
-            };
-            
-            tracks[trackId] = newTrack;
-            customTracks[trackId] = newTrack;
-            
-            localStorage.setItem('customTracks', JSON.stringify(customTracks));
-            
-            // Add tab
-            const tabsContainer = document.getElementById('tabsContainer');
-            const newTab = document.createElement('button');
-            newTab.className = 'tab custom';
-            newTab.innerHTML = `<i class="${newTrack.icon}"></i> ${name} (${days} Days)`;
-            newTab.onclick = () => switchTrack(trackId);
-            tabsContainer.appendChild(newTab);
-            
-            closeCreateTrackModal();
-            showDashboard();
-            showAchievement('New Track Created!');
-        }
-
-        // Delete custom track
-        function deleteTrack(event, trackId) {
-            event.stopPropagation();
-            
-            if (confirm('Are you sure you want to delete this track?')) {
-                delete tracks[trackId];
-                delete customTracks[trackId];
-                localStorage.setItem('customTracks', JSON.stringify(customTracks));
-                
-                // Remove tab
-                const tab = document.querySelector(`.tab[onclick="switchTrack('${trackId}')"]`);
-                if (tab) tab.remove();
-                
-                showDashboard();
-                showAchievement('Track Deleted!');
-            }
+        // Close timeline modal
+        function closeTimelineModal() {
+            document.getElementById('timelineModal').style.display = 'none';
+            currentViewingTrack = null;
         }
 
         // Change start date
@@ -1067,21 +1177,14 @@
             
             closeDateModal();
             showAchievement('Start Date Updated!');
-            
-            // Reload current track if viewing one
-            if (currentTrack) {
-                switchTrack(currentTrack);
-            }
         }
 
         // Check for achievements
-        function checkAchievements() {
-            if (!currentTrack) return;
-            
-            const trackData = tracks[currentTrack];
-            const totalLessons = trackData.days * trackData.lessonsPerDay;
+        function checkAchievements(trackId) {
+            const track = tracks[trackId];
+            const totalLessons = track.days * track.lessonsPerDay;
             const completedCount = Object.keys(completedLessons).filter(id => 
-                id.startsWith(currentTrack) && completedLessons[id]
+                id.startsWith(trackId) && completedLessons[id]
             ).length;
             
             const percentage = (completedCount / totalLessons) * 100;
@@ -1093,7 +1196,7 @@
             // Check for day streaks
             const completedDays = new Set();
             Object.keys(completedLessons).forEach(id => {
-                if (id.startsWith(currentTrack) && completedLessons[id]) {
+                if (id.startsWith(trackId) && completedLessons[id]) {
                     const day = id.match(/day(\d+)/)[1];
                     completedDays.add(day);
                 }
@@ -1127,11 +1230,15 @@
 
         // Close modals when clicking outside
         window.onclick = function(event) {
-            const createModal = document.getElementById('createTrackModal');
+            const trackModal = document.getElementById('trackModal');
+            const timelineModal = document.getElementById('timelineModal');
             const dateModal = document.getElementById('dateModal');
             
-            if (event.target === createModal) {
-                closeCreateTrackModal();
+            if (event.target === trackModal) {
+                closeTrackModal();
+            }
+            if (event.target === timelineModal) {
+                closeTimelineModal();
             }
             if (event.target === dateModal) {
                 closeDateModal();
