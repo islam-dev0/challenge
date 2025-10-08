@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberSec Learning Hub - Create Your Journey</title>
+    <title>CyberSec Learning Hub - Custom Tracks</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #00d9ff;
+            --primary: #00d4ff;
             --secondary: #ff006e;
-            --accent: #ffbe0b;
+            --accent: #8338ec;
             --success: #06ffa5;
+            --warning: #ffbe0b;
+            --danger: #fb5607;
             --dark: #0a0e27;
             --darker: #050714;
             --light: #f8f9fa;
@@ -43,9 +45,9 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 50%, var(--primary) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--secondary) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, var(--accent) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, var(--primary) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--secondary) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--accent) 0%, transparent 50%);
             opacity: 0.08;
             z-index: -1;
             animation: bgMove 30s ease-in-out infinite;
@@ -62,7 +64,7 @@
             background: linear-gradient(135deg, var(--dark) 0%, rgba(10, 14, 39, 0.9) 100%);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -70,29 +72,30 @@
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1rem;
         }
 
         .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            animation: logoFloat 3s ease-in-out infinite;
+            font-size: 1.8rem;
+            animation: logoFloat 4s ease-in-out infinite;
         }
 
         @keyframes logoFloat {
@@ -101,61 +104,150 @@
         }
 
         .logo-text {
-            font-size: 2.5rem;
-            font-weight: 800;
+            font-size: 1.8rem;
+            font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .tagline {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 1rem;
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
         /* Main Container */
         .container {
-            max-width: 1200px;
-            margin: 3rem auto;
+            max-width: 1400px;
+            margin: 2rem auto;
             padding: 0 2rem;
         }
 
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 5rem 2rem;
-            animation: fadeIn 1s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            margin-bottom: 3rem;
         }
 
         .empty-icon {
-            font-size: 5rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            opacity: 0.5;
+            font-size: 4rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
         }
 
         .empty-title {
             font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .empty-text {
-            font-size: 1.1rem;
             color: var(--gray);
-            max-width: 500px;
-            margin: 0 auto 2rem;
+            margin-bottom: 2rem;
         }
 
-        /* Tracks Grid */
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Tracks Section */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
         .tracks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -169,24 +261,11 @@
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: slideUp 0.5s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .track-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.2);
-            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .track-card::after {
@@ -219,25 +298,24 @@
         }
 
         .track-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.1);
         }
 
         .track-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
         .track-meta {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gray);
         }
 
@@ -247,10 +325,10 @@
         }
 
         .action-btn {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--light);
             cursor: pointer;
@@ -261,7 +339,7 @@
         }
 
         .action-btn:hover {
-            background: var(--secondary);
+            background: var(--primary);
             transform: scale(1.1);
         }
 
@@ -278,16 +356,16 @@
 
         .progress-bar {
             width: 100%;
-            height: 10px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
+            border-radius: 4px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 5px;
+            border-radius: 4px;
             transition: width 0.5s ease;
             position: relative;
         }
@@ -311,24 +389,24 @@
         /* Floating Action Button */
         .fab {
             position: fixed;
-            bottom: 2.5rem;
-            right: 2.5rem;
-            width: 70px;
-            height: 70px;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border: none;
             color: white;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 5px 25px rgba(0, 217, 255, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
             transition: all 0.3s ease;
             z-index: 90;
         }
 
         .fab:hover {
             transform: scale(1.1) rotate(90deg);
-            box-shadow: 0 8px 35px rgba(0, 217, 255, 0.6);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6);
         }
 
         /* Modal */
@@ -339,7 +417,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
             z-index: 1000;
             animation: fadeIn 0.3s ease;
@@ -352,11 +430,27 @@
             padding: 2.5rem;
             width: 90%;
             max-width: 700px;
-            border-radius: 25px;
+            border-radius: 20px;
             border: 1px solid var(--border);
             animation: slideUp 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .modal-header {
@@ -367,48 +461,44 @@
         }
 
         .modal-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .close-btn {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border: none;
             background: rgba(255, 255, 255, 0.1);
             color: var(--light);
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
 
         .close-btn:hover {
-            background: var(--secondary);
+            background: var(--danger);
             transform: rotate(90deg);
         }
 
         .form-group {
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
             color: var(--light);
-            font-size: 1.1rem;
         }
 
         .form-input {
             width: 100%;
-            padding: 1.2rem;
+            padding: 1rem;
             background: var(--card-bg);
-            border: 2px solid var(--border);
-            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
             color: var(--light);
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -417,96 +507,93 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
         }
 
-        /* Icon Selection */
-        .icon-section {
-            margin: 2rem 0;
+        .template-section {
+            margin-bottom: 2rem;
         }
 
-        .icon-categories {
-            display: flex;
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            margin-top: 1rem;
         }
 
-        .category-btn {
-            padding: 0.8rem 1.5rem;
+        .template-card {
             background: var(--card-bg);
-            border: 2px solid var(--border);
-            border-radius: 30px;
-            color: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+
+        .template-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .template-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .template-name {
+            font-size: 0.9rem;
             font-weight: 600;
-        }
-
-        .category-btn:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .category-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
         }
 
         .icon-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 1.2rem;
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
         .icon-option {
-            width: 80px;
-            height: 80px;
-            border: 3px solid var(--border);
-            border-radius: 15px;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
             background: var(--card-bg);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
 
         .icon-option:hover {
             border-color: var(--primary);
             transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
         }
 
         .icon-option.selected {
             border-color: var(--primary);
-            background: rgba(0, 217, 255, 0.2);
-            transform: scale(1.05);
+            background: rgba(0, 212, 255, 0.2);
         }
 
         .btn-primary {
             width: 100%;
-            padding: 1.3rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             color: white;
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 2rem;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
         }
 
         /* Timeline View */
@@ -522,19 +609,18 @@
             margin-bottom: 2rem;
             padding: 1.5rem;
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 16px;
             border: 1px solid var(--border);
         }
 
         .back-btn {
-            padding: 0.8rem 1.8rem;
+            padding: 0.75rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             color: var(--light);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
         }
 
         .back-btn:hover {
@@ -552,10 +638,9 @@
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            width: 2px;
+            background: var(--border);
             transform: translateX(-50%);
-            opacity: 0.5;
         }
 
         .timeline-item {
@@ -579,8 +664,8 @@
         .timeline-content {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 1.5rem;
             width: 45%;
             position: relative;
             transition: all 0.3s ease;
@@ -588,7 +673,7 @@
 
         .timeline-content:hover {
             transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .timeline-item:nth-child(odd) .timeline-content {
@@ -601,47 +686,47 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: var(--primary);
-            color: var(--darker);
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-size: 0.9rem;
-            font-weight: 700;
+            font-weight: 600;
             z-index: 1;
         }
 
         .day-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
         }
 
         .lessons-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
         .lesson-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1.2rem;
+            padding: 1rem;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
+            border-radius: 10px;
             transition: all 0.3s ease;
         }
 
         .lesson-item:hover {
-            background: rgba(0, 217, 255, 0.1);
-            transform: translateX(8px);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(5px);
         }
 
         .lesson-checkbox {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
             accent-color: var(--success);
         }
@@ -650,7 +735,6 @@
             flex: 1;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
         }
 
         .lesson-item.completed .lesson-label {
@@ -665,14 +749,13 @@
             right: 2rem;
             background: var(--success);
             color: var(--darker);
-            padding: 1.2rem 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(6, 255, 165, 0.4);
-            transform: translateX(500px);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(6, 255, 165, 0.3);
+            transform: translateX(400px);
             transition: transform 0.5s ease;
             z-index: 2000;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .achievement.show {
@@ -687,35 +770,34 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .logo-text {
-                font-size: 2rem;
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
             }
-            
+
             .tracks-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .timeline::before {
                 left: 20px;
             }
-            
+
             .timeline-content {
-                width: calc(100% - 80px);
-                margin-left: 80px !important;
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
             }
-            
+
             .timeline-date {
                 left: 20px;
             }
-            
-            .icon-grid {
-                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+
+            .stats-section {
+                grid-template-columns: 1fr;
             }
-            
-            .icon-option {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+
+            .template-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -727,9 +809,16 @@
                 <div class="logo-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <div class="logo-text">CyberSec Hub</div>
+                <div class="logo-text">CyberSec Learning Hub</div>
             </div>
-            <p class="tagline">Build Your Personal Cybersecurity Learning Journey</p>
+            <div class="header-actions">
+                <button class="action-btn" onclick="exportData()">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="action-btn" onclick="importData()">
+                    <i class="fas fa-upload"></i>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -739,15 +828,53 @@
             <div class="empty-icon">
                 <i class="fas fa-graduation-cap"></i>
             </div>
-            <h2 class="empty-title">Start Your Learning Journey</h2>
-            <p class="empty-text">
-                Create your first cybersecurity learning track. Choose from Python, Linux, Web Security, and more. 
-                Customize your path to becoming a cybersecurity expert!
-            </p>
+            <h2 class="empty-title">Start Your Cybersecurity Journey</h2>
+            <p class="empty-text">Create your first learning track and begin mastering offensive security skills</p>
+            <button class="btn-primary" onclick="openCreateModal()">
+                <i class="fas fa-plus"></i> Create Track
+            </button>
         </div>
 
-        <!-- Tracks Grid -->
-        <div class="tracks-grid" id="tracksGrid" style="display: none;">
+        <!-- Stats Section -->
+        <div class="stats-section" id="statsSection" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(0, 212, 255, 0.2); color: var(--primary);">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="stat-value" id="totalLessons">0</div>
+                <div class="stat-label">Total Lessons</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(6, 255, 165, 0.2); color: var(--success);">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-value" id="completedLessons">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(131, 56, 236, 0.2); color: var(--accent);">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="stat-value" id="overallProgress">0%</div>
+                <div class="stat-label">Overall Progress</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(255, 190, 11, 0.2); color: var(--warning);">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-value" id="tracksCount">0</div>
+                <div class="stat-label">Active Tracks</div>
+            </div>
+        </div>
+
+        <!-- Tracks Section -->
+        <div class="section-header" id="tracksHeader" style="display: none;">
+            <h2 class="section-title">Your Learning Tracks</h2>
+            <button class="action-btn" onclick="changeStartDate()">
+                <i class="fas fa-calendar-alt"></i>
+            </button>
+        </div>
+        <div class="tracks-grid" id="tracksGrid">
             <!-- Track cards will be dynamically generated -->
         </div>
 
@@ -755,10 +882,10 @@
         <div class="timeline-view" id="timelineView">
             <div class="timeline-header">
                 <button class="back-btn" onclick="showDashboard()">
-                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    <i class="fas fa-arrow-left"></i> Back
                 </button>
                 <h2 id="timelineTitle">Track Timeline</h2>
-                <div class="progress-bar" style="width: 250px;">
+                <div class="progress-bar" style="width: 200px;">
                     <div class="progress-fill" id="timelineProgress" style="width: 0%"></div>
                 </div>
             </div>
@@ -777,15 +904,21 @@
     <div class="modal" id="trackModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">Create Learning Track</h2>
+                <h2 class="modal-title">Create New Learning Track</h2>
                 <button class="close-btn" onclick="closeModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <form id="trackForm" onsubmit="saveTrack(event)">
+                <div class="template-section">
+                    <label class="form-label">Quick Start Templates</label>
+                    <div class="template-grid" id="templateGrid">
+                        <!-- Templates will be dynamically generated -->
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="form-label">Track Name</label>
-                    <input type="text" class="form-input" id="trackName" required placeholder="e.g., Python for Pentesting">
+                    <input type="text" class="form-input" id="trackName" required placeholder="e.g., Advanced Penetration Testing">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Duration (Days)</label>
@@ -797,24 +930,34 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Track Color</label>
-                    <input type="color" class="form-input" id="trackColor" value="#00d9ff">
+                    <input type="color" class="form-input" id="trackColor" value="#00d4ff">
                 </div>
-                
-                <div class="icon-section">
-                    <label class="form-label">Choose an Icon</label>
-                    <div class="icon-categories">
-                        <button type="button" class="category-btn active" onclick="filterIcons('all')">All</button>
-                        <button type="button" class="category-btn" onclick="filterIcons('linux')">Linux</button>
-                        <button type="button" class="category-btn" onclick="filterIcons('python')">Python</button>
-                        <button type="button" class="category-btn" onclick="filterIcons('security')">Security</button>
-                        <button type="button" class="category-btn" onclick="filterIcons('tools')">Tools</button>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label">Select Icon</label>
                     <div class="icon-grid" id="iconGrid">
                         <!-- Icons will be dynamically generated -->
                     </div>
                 </div>
-                
                 <button type="submit" class="btn-primary">Create Track</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Date Modal -->
+    <div class="modal" id="dateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Change Start Date</h2>
+                <button class="close-btn" onclick="closeDateModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="dateForm" onsubmit="updateStartDate(event)">
+                <div class="form-group">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" class="form-input" id="startDate" required>
+                </div>
+                <button type="submit" class="btn-primary">Update Date</button>
             </form>
         </div>
     </div>
@@ -825,34 +968,85 @@
     </div>
 
     <script>
-        // Comprehensive icon library with categories
-        const iconLibrary = {
-            linux: [
-                'fa-linux', 'fa-terminal', 'fa-terminal', 'fa-code-branch', 'fa-server',
-                'fa-database', 'fa-network-wired', 'fa-ubuntu', 'fa-fedora', 'fa-redhat'
-            ],
-            python: [
-                'fa-python', 'fa-code', 'fa-file-code', 'fa-laptop-code', 'fa-brackets-curly',
-                'fa-keyboard', 'fa-terminal', 'fa-bug', 'fa-shield-alt', 'fa-lock'
-            ],
-            security: [
-                'fa-shield-alt', 'fa-user-secret', 'fa-user-ninja', 'fa-fingerprint', 'fa-key',
-                'fa-lock', 'fa-lock-open', 'fa-eye-slash', 'fa-mask', 'fa-id-card'
-            ],
-            tools: [
-                'fa-tools', 'fa-cogs', 'fa-wrench', 'fa-hammer', 'fa-screwdriver',
-                'fa-microchip', 'fa-microscope', 'fa-satellite-dish', 'fa-radar', 'fa-crosshairs'
-            ],
-            all: []
-        };
+        // Cybersecurity Icons
+        const cybersecurityIcons = [
+            // Programming Languages
+            'fa-python', 'fa-laptop-code', 'fa-code', 'fa-terminal',
+            // Linux & Systems
+            'fa-linux', 'fa-server', 'fa-database', 'fa-microchip',
+            // Security Tools
+            'fa-shield-alt', 'fa-user-shield', 'fa-lock', 'fa-key',
+            'fa-fingerprint', 'fa-user-secret', 'fa-user-ninja',
+            // Hacking & Penetration
+            'fa-bug', 'fa-virus', 'fa-radiation', 'fa-skull-crossbones',
+            'fa-crosshairs', 'fa-biohazard', 'fa-explosion',
+            // Networks
+            'fa-network-wired', 'fa-satellite-dish', 'fa-wifi', 'fa-router',
+            'fa-cloud', 'fa-globe', 'fa-sitemap',
+            // Web Security
+            'fa-globe-americas', 'fa-internet-explorer', 'fa-chrome',
+            'fa-firefox', 'fa-safari', 'fa-edge',
+            // Mobile & IoT
+            'fa-mobile-alt', 'fa-tablet-alt', 'fa-microchip', 'fa-memory',
+            // Cryptography
+            'fa-envelope-open-text', 'fa-signature', 'fa-certificate',
+            'fa-id-card', 'fa-passport',
+            // Monitoring & Analysis
+            'fa-chart-line', 'fa-chart-bar', 'fa-chart-pie', 'fa-tachometer-alt',
+            'fa-radar', 'fa-satellite', 'fa-binoculars', 'fa-search',
+            // Attacks & Defense
+            'fa-bolt', 'fa-fire-alt', 'fa-bomb', 'fa-meteor',
+            'fa-shield-virus', 'fa-virus-slash', 'fa-user-times',
+            // Cloud & DevOps
+            'fa-cloud-upload-alt', 'fa-cloud-download-alt', 'fa-docker',
+            'fa-kubernetes', 'fa-aws', 'fa-microsoft', 'fa-linux'
+        ];
 
-        // Combine all icons
-        Object.values(iconLibrary).forEach(category => {
-            iconLibrary.all.push(...category);
-        });
-
-        // Remove duplicates
-        iconLibrary.all = [...new Set(iconLibrary.all)];
+        // Templates for quick start
+        const templates = [
+            {
+                name: 'Python Security',
+                days: 120,
+                lessonsPerDay: 3,
+                color: '#3776ab',
+                icon: 'fa-python'
+            },
+            {
+                name: 'Linux Pentesting',
+                days: 90,
+                lessonsPerDay: 2,
+                color: '#FCC624',
+                icon: 'fa-linux'
+            },
+            {
+                name: 'Web Hacking',
+                days: 100,
+                lessonsPerDay: 2,
+                color: '#E34C26',
+                icon: 'fa-globe'
+            },
+            {
+                name: 'Network Security',
+                days: 80,
+                lessonsPerDay: 2,
+                color: '#00d4ff',
+                icon: 'fa-network-wired'
+            },
+            {
+                name: 'Mobile Security',
+                days: 60,
+                lessonsPerDay: 2,
+                color: '#8338ec',
+                icon: 'fa-mobile-alt'
+            },
+            {
+                name: 'Cloud Security',
+                days: 70,
+                lessonsPerDay: 2,
+                color: '#FF9900',
+                icon: 'fa-cloud'
+            }
+        ];
 
         // App State
         let tracks = JSON.parse(localStorage.getItem('customTracks')) || {};
@@ -861,68 +1055,120 @@
         let editingTrackId = null;
         let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || {};
         let achievements = JSON.parse(localStorage.getItem('achievements')) || [];
-        let selectedIcon = null;
 
         // Initialize App
         function init() {
-            generateIconGrid('all');
-            renderDashboard();
+            generateTemplates();
+            generateIconGrid();
+            updateUI();
+        }
+
+        // Generate Templates
+        function generateTemplates() {
+            const grid = document.getElementById('templateGrid');
+            grid.innerHTML = '';
+            
+            templates.forEach(template => {
+                const card = document.createElement('div');
+                card.className = 'template-card';
+                card.onclick = () => applyTemplate(template);
+                card.innerHTML = `
+                    <div class="template-icon">
+                        <i class="fab ${template.icon}"></i>
+                    </div>
+                    <div class="template-name">${template.name}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Apply Template
+        function applyTemplate(template) {
+            document.getElementById('trackName').value = template.name;
+            document.getElementById('trackDays').value = template.days;
+            document.getElementById('trackLessons').value = template.lessonsPerDay;
+            document.getElementById('trackColor').value = template.color;
+            
+            // Select icon
+            document.querySelectorAll('.icon-option').forEach(opt => {
+                opt.classList.remove('selected');
+                if (opt.querySelector('i').classList.contains(template.icon)) {
+                    opt.classList.add('selected');
+                }
+            });
         }
 
         // Generate Icon Grid
-        function generateIconGrid(category) {
+        function generateIconGrid() {
             const grid = document.getElementById('iconGrid');
             grid.innerHTML = '';
             
-            const icons = iconLibrary[category] || iconLibrary.all;
-            
-            icons.forEach(icon => {
+            cybersecurityIcons.forEach(icon => {
                 const option = document.createElement('div');
                 option.className = 'icon-option';
-                option.innerHTML = `<i class="fab ${icon}"></i>`;
-                option.onclick = () => selectIcon(icon, option);
+                option.innerHTML = `<i class="fas ${icon}"></i>`;
+                option.onclick = () => selectIcon(icon);
                 grid.appendChild(option);
             });
         }
 
-        // Filter Icons by Category
-        function filterIcons(category) {
-            // Update active category button
-            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Generate filtered icons
-            generateIconGrid(category);
-        }
-
         // Select Icon
-        function selectIcon(icon, element) {
-            // Remove previous selection
+        function selectIcon(icon) {
             document.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
-            
-            // Add selection to clicked icon
-            element.classList.add('selected');
-            selectedIcon = icon;
+            event.target.closest('.icon-option').classList.add('selected');
+            document.getElementById('selectedIcon').value = icon;
         }
 
-        // Render Dashboard
-        function renderDashboard() {
-            const grid = document.getElementById('tracksGrid');
-            const emptyState = document.getElementById('emptyState');
+        // Update UI
+        function updateUI() {
+            const trackIds = Object.keys(tracks);
             
-            if (Object.keys(tracks).length === 0) {
-                grid.style.display = 'none';
-                emptyState.style.display = 'block';
+            if (trackIds.length === 0) {
+                document.getElementById('emptyState').style.display = 'block';
+                document.getElementById('statsSection').style.display = 'none';
+                document.getElementById('tracksHeader').style.display = 'none';
             } else {
-                grid.style.display = 'grid';
-                emptyState.style.display = 'none';
-                grid.innerHTML = '';
-                
-                Object.entries(tracks).forEach(([trackId, track]) => {
-                    const card = createTrackCard(trackId, track);
-                    grid.appendChild(card);
-                });
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('statsSection').style.display = 'grid';
+                document.getElementById('tracksHeader').style.display = 'flex';
             }
+            
+            updateStats();
+            renderTracks();
+        }
+
+        // Update Statistics
+        function updateStats() {
+            let totalLessons = 0;
+            let completedCount = 0;
+            
+            Object.entries(tracks).forEach(([trackId, track]) => {
+                const trackTotal = track.days * track.lessonsPerDay;
+                const trackCompleted = Object.keys(completedLessons).filter(id => 
+                    id.startsWith(trackId) && completedLessons[id]
+                ).length;
+                
+                totalLessons += trackTotal;
+                completedCount += trackCompleted;
+            });
+            
+            const progress = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
+            
+            document.getElementById('totalLessons').textContent = totalLessons;
+            document.getElementById('completedLessons').textContent = completedCount;
+            document.getElementById('overallProgress').textContent = progress + '%';
+            document.getElementById('tracksCount').textContent = Object.keys(tracks).length;
+        }
+
+        // Render Tracks
+        function renderTracks() {
+            const grid = document.getElementById('tracksGrid');
+            grid.innerHTML = '';
+            
+            Object.entries(tracks).forEach(([trackId, track]) => {
+                const card = createTrackCard(trackId, track);
+                grid.appendChild(card);
+            });
         }
 
         // Create Track Card
@@ -941,7 +1187,7 @@
                 <div class="track-header">
                     <div class="track-info">
                         <div class="track-icon" style="background: ${track.color}20; color: ${track.color};">
-                            <i class="fab ${track.icon}"></i>
+                            <i class="fas ${track.icon}"></i>
                         </div>
                         <div>
                             <div class="track-title">${track.name}</div>
@@ -959,7 +1205,7 @@
                 </div>
                 <div class="track-progress">
                     <div class="progress-info">
-                        <span>${completedCount}/${totalLessons} completed</span>
+                        <span>${completedCount}/${totalLessons} lessons</span>
                         <span>${progress}%</span>
                     </div>
                     <div class="progress-bar">
@@ -976,8 +1222,8 @@
             currentTrack = trackId;
             const track = tracks[trackId];
             
-            document.getElementById('tracksGrid').style.display = 'none';
-            document.getElementById('emptyState').style.display = 'none';
+            document.querySelector('.tracks-grid').style.display = 'none';
+            document.querySelector('.section-header').style.display = 'none';
             document.getElementById('timelineView').style.display = 'block';
             
             document.getElementById('timelineTitle').textContent = track.name;
@@ -998,7 +1244,7 @@
                 
                 const item = document.createElement('div');
                 item.className = 'timeline-item';
-                item.style.animationDelay = `${day * 30}ms`;
+                item.style.animationDelay = `${day * 20}ms`;
                 
                 const content = document.createElement('div');
                 content.className = 'timeline-content';
@@ -1072,7 +1318,8 @@
                 item.classList.remove('completed');
             }
             
-            renderDashboard();
+            updateStats();
+            renderTracks();
             updateTimelineProgress(currentTrack, tracks[currentTrack]);
         }
 
@@ -1089,8 +1336,8 @@
 
         // Show Dashboard
         function showDashboard() {
-            document.getElementById('tracksGrid').style.display = Object.keys(tracks).length > 0 ? 'grid' : 'none';
-            document.getElementById('emptyState').style.display = Object.keys(tracks).length === 0 ? 'block' : 'none';
+            document.querySelector('.tracks-grid').style.display = 'grid';
+            document.querySelector('.section-header').style.display = 'flex';
             document.getElementById('timelineView').style.display = 'none';
         }
 
@@ -1098,9 +1345,8 @@
         function openCreateModal() {
             editingTrackId = null;
             document.getElementById('trackForm').reset();
-            document.getElementById('trackColor').value = '#00d9ff';
+            document.getElementById('trackColor').value = '#00d4ff';
             document.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
-            selectedIcon = null;
             document.getElementById('trackModal').style.display = 'block';
         }
 
@@ -1120,12 +1366,10 @@
             document.getElementById('trackLessons').value = track.lessonsPerDay;
             document.getElementById('trackColor').value = track.color;
             
-            // Select the current icon
             document.querySelectorAll('.icon-option').forEach(opt => {
                 opt.classList.remove('selected');
                 if (opt.querySelector('i').classList.contains(track.icon)) {
                     opt.classList.add('selected');
-                    selectedIcon = track.icon;
                 }
             });
             
@@ -1136,28 +1380,26 @@
         function saveTrack(event) {
             event.preventDefault();
             
-            if (!selectedIcon) {
-                alert('Please select an icon for your track');
-                return;
-            }
-            
             const name = document.getElementById('trackName').value;
             const days = parseInt(document.getElementById('trackDays').value);
             const lessons = parseInt(document.getElementById('trackLessons').value);
             const color = document.getElementById('trackColor').value;
+            const selectedIcon = document.querySelector('.icon-option.selected');
+            const icon = selectedIcon ? selectedIcon.querySelector('i').className.split(' ')[1] : 'fa-shield-alt';
             
             if (editingTrackId) {
-                tracks[editingTrackId] = { name, days, lessonsPerDay: lessons, color, icon: selectedIcon };
+                tracks[editingTrackId] = { ...tracks[editingTrackId], name, days, lessonsPerDay: lessons, color, icon };
                 showAchievement('Track Updated!');
             } else {
-                const trackId = 'track_' + Date.now();
-                tracks[trackId] = { name, days, lessonsPerDay: lessons, color, icon: selectedIcon };
+                const trackId = 'custom_' + Date.now();
+                const newTrack = { name, days, lessonsPerDay: lessons, color, icon };
+                tracks[trackId] = newTrack;
                 showAchievement('New Track Created!');
             }
             
             localStorage.setItem('customTracks', JSON.stringify(tracks));
             closeModal();
-            renderDashboard();
+            updateUI();
         }
 
         // Delete Track
@@ -1168,16 +1410,34 @@
                 delete tracks[trackId];
                 localStorage.setItem('customTracks', JSON.stringify(tracks));
                 
-                // Remove completed lessons for this track
-                Object.keys(completedLessons).forEach(lessonId => {
-                    if (lessonId.startsWith(trackId)) {
-                        delete completedLessons[lessonId];
-                    }
-                });
-                localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
-                
-                renderDashboard();
+                updateUI();
                 showAchievement('Track Deleted!');
+            }
+        }
+
+        // Change Start Date
+        function changeStartDate() {
+            document.getElementById('startDate').value = globalStartDate;
+            document.getElementById('dateModal').style.display = 'block';
+        }
+
+        // Close Date Modal
+        function closeDateModal() {
+            document.getElementById('dateModal').style.display = 'none';
+        }
+
+        // Update Start Date
+        function updateStartDate(event) {
+            event.preventDefault();
+            
+            globalStartDate = document.getElementById('startDate').value;
+            localStorage.setItem('globalStartDate', globalStartDate);
+            
+            closeDateModal();
+            showAchievement('Start Date Updated!');
+            
+            if (currentTrack) {
+                renderTimeline(currentTrack, tracks[currentTrack]);
             }
         }
 
@@ -1214,17 +1474,78 @@
             }, 3000);
         }
 
+        // Export Data
+        function exportData() {
+            const data = {
+                tracks,
+                globalStartDate,
+                completedLessons,
+                achievements
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cybersec-learning-backup.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showAchievement('Data Exported!');
+        }
+
+        // Import Data
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = (event) => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        
+                        tracks = data.tracks || {};
+                        globalStartDate = data.globalStartDate || new Date().toISOString().split('T')[0];
+                        completedLessons = data.completedLessons || {};
+                        achievements = data.achievements || [];
+                        
+                        localStorage.setItem('customTracks', JSON.stringify(tracks));
+                        localStorage.setItem('globalStartDate', globalStartDate);
+                        localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                        localStorage.setItem('achievements', JSON.stringify(achievements));
+                        
+                        updateUI();
+                        showAchievement('Data Imported!');
+                    } catch (error) {
+                        showAchievement('Import Failed!');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
         // Format Date
         function formatDate(date) {
             const options = { month: 'short', day: 'numeric', year: 'numeric' };
             return date.toLocaleDateString('en-US', options);
         }
 
-        // Close modal on outside click
+        // Close modals on outside click
         window.onclick = function(event) {
-            const modal = document.getElementById('trackModal');
-            if (event.target === modal) {
+            const trackModal = document.getElementById('trackModal');
+            const dateModal = document.getElementById('dateModal');
+            
+            if (event.target === trackModal) {
                 closeModal();
+            }
+            if (event.target === dateModal) {
+                closeDateModal();
             }
         }
 
